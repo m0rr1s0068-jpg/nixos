@@ -1,10 +1,18 @@
 { config, pkgs, ... }:
-
+let
+   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
+in
 {
   imports =
     [
       /etc/nixos/hardware-configuration.nix
+      (import "${home-manager}/nixos")
     ];
+
+  home-manager.useUserPackages = true;
+  home-manager.useGlobalPackages = true;
+  home-manager.backupFileExtention = "backup";
+  home-manager.user.ray = import ./home.nix;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -57,7 +65,6 @@
     description = "Ray Morris";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  thunderbird
     ];
   };
 
@@ -74,12 +81,6 @@
   bat
   btop
   ];
-
-  programs.bash = {
-    promptInit = ''
-      export PS1='\[\e[38;5;76m\]\u\[\e[0m\] in \[\e[38;5;32m\]\w\[\e[0m\] \\$ '
-    '';
-  };
 
   services.openssh.enable = true;
 
