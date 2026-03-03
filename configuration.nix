@@ -77,8 +77,8 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes"]
-  nix.settings.trsusted.users = [ "root" "ray" ]
+  nix.settings.experimental-features = [ "nix-command" "flakes"];
+  nix.settings.trsusted-users = [ "root" "ray" ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
