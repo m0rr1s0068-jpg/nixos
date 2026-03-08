@@ -18,7 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, flake-utils, disko, agenix, secrets } @inputs:
+  outputs = { self, nixpkgs, flake-utils, disko, agenix, secrets, chaotic } @inputs:
     let
       user = "ray";
       linuxSystems = [ "x86_64-linux" ];
