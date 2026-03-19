@@ -59,6 +59,7 @@
     xfce.xfce4-whiskermenu-plugin
     xfce.xfce4-pulseaudio-plugin
     epson-escpr2
+    inputs.helix.packages."${pkgs.stdenv.hostPlatform.system}".helix
   ];
 
   services.openssh.enable = true;
