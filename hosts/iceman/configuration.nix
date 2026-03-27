@@ -1,17 +1,27 @@
-{ config, lib, pkgs, ... }:
-
+# Main Configurations
+{ 
+  imputs,
+  lib,
+  ...
+}:
 {
+   #Adjust according to yout platform, such as
   imports =
     [
       ./hardware-configuration.nix
+      ./services
+      ../modules/common
+      ../modules/servers
     ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+    isVirtual = true;
 
-  networking.hostName = "iceman";
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.networkmanager.enable = true;
+    networking.hostName = "iceman";
+
+    networking.networkmanager.enable = true;
 
   time.timeZone = "America/New_York";
 
